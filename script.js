@@ -14,8 +14,8 @@ class HotLoop {
         this.camera = {
             x: 0,
             y: 0,
-            zoom: 1,
-            targetZoom: 1
+            zoom: 0.6,
+            targetZoom: 0.6
         };
         
         // Input tracking
@@ -72,7 +72,7 @@ class HotLoop {
         // Start hold timer
         this.holdTimer = setTimeout(() => {
             this.isHolding = true;
-            this.camera.targetZoom = 0.5; // Zoom out
+            this.camera.targetZoom = 0.3; // Zoom out
             this.createParticleBurst(touch.clientX, touch.clientY, 30);
         }, 500);
     }
@@ -102,7 +102,7 @@ class HotLoop {
         
         if (this.isHolding) {
             // Release hold - zoom back in
-            this.camera.targetZoom = 1;
+            this.camera.targetZoom = 0.6;
             this.isHolding = false;
         } else if (swipeSpeed > 10) {
             // Swipe detected - boost cars
@@ -155,7 +155,7 @@ class HotLoop {
     createInitialRoad() {
         // Create a starting loop
         const segments = 8;
-        const radius = 200;
+        const radius = 350;
         
         for (let i = 0; i < segments; i++) {
             const angle = (i / segments) * Math.PI * 2;
